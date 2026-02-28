@@ -1,13 +1,23 @@
 {
   "name": "board-game",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Simple frontend board games: Chess and Gomoku with AI opponents",
+  "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npx http-server . -p 8000 -o index.html",
+    "test": "echo \"Open index.html in browser to play!\""
   },
-  "keywords": [],
+  "keywords": [
+    "chess",
+    "gomoku",
+    "board-game",
+    "ai",
+    "frontend",
+    "javascript"
+  ],
   "author": "",
-  "license": "ISC",
-  "type": "commonjs"
+  "license": "MIT",
+  "engines": {
+    "node": ">=12.0.0"
+  }
 }
