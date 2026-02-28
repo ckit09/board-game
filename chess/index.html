@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chess</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="../index.html" class="back-btn">← Back</a>
+            <h1>♟ Chess</h1>
+        </div>
+
+        <div class="game-options">
+            <div class="mode-selector">
+                <label>Game Mode:</label>
+                <select id="gameMode">
+                    <option value="ai">Player vs AI</option>
+                    <option value="pvp">Player vs Player</option>
+                </select>
+                <button id="newGameBtn" class="btn-primary">New Game</button>
+            </div>
+        </div>
+
+        <div class="game-info">
+            <div class="turn-info">
+                <span id="currentTurn">White's Turn</span>
+            </div>
+            <div class="status-info">
+                <span id="status">Game Started</span>
+            </div>
+        </div>
+
+        <div class="game-board" id="gameBoard"></div>
+
+        <div class="moves-info">
+            <p id="moveCount">Moves: 0</p>
+            <button id="undoBtn" class="btn-secondary">Undo</button>
+        </div>
+    </div>
+
+    <script src="chess.js"></script>
+</body>
+</html>
