@@ -1,0 +1,571 @@
+/* Mahjong Game Styles */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+}
+
+.mahjong-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.game-header {
+  text-align: center;
+  color: white;
+  margin-bottom: 30px;
+}
+
+.game-header h1 {
+  font-size: 3em;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.game-header p {
+  font-size: 1.2em;
+  opacity: 0.9;
+}
+
+/* Screen Management */
+.screen {
+  animation: fadeIn 0.3s ease-in;
+}
+
+.screen.hidden {
+  display: none;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Setup Screen */
+.setup-panel,
+.waiting-panel,
+.game-over-panel {
+  background: white;
+  border-radius: 15px;
+  padding: 40px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.setup-group {
+  margin-bottom: 20px;
+}
+
+.setup-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #555;
+}
+
+.setup-group input,
+.setup-group select {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 1em;
+  transition: border-color 0.3s;
+}
+
+.setup-group input:focus,
+.setup-group select:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.or-divider {
+  text-align: center;
+  color: #999;
+  margin: 30px 0;
+  position: relative;
+}
+
+.or-divider::before,
+.or-divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 45%;
+  height: 1px;
+  background: #ddd;
+}
+
+.or-divider::before {
+  left: 0;
+}
+
+.or-divider::after {
+  right: 0;
+}
+
+/* Buttons */
+.btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn-secondary {
+  background: #f0f0f0;
+  color: #333;
+  border: 2px solid #ddd;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: #e0e0e0;
+  border-color: #999;
+}
+
+.btn-success {
+  background: #28a745;
+  color: white;
+}
+
+.btn-success:hover:not(:disabled) {
+  background: #218838;
+}
+
+.btn-danger {
+  background: #dc3545;
+  color: white;
+}
+
+.btn-danger:hover:not(:disabled) {
+  background: #c82333;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Status Messages */
+.status-message {
+  margin-top: 20px;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  display: none;
+  animation: slideDown 0.3s ease;
+}
+
+.status-message:not(:empty) {
+  display: block;
+}
+
+.status-info {
+  background: #e7f3ff;
+  color: #0066cc;
+  border-left: 4px solid #0066cc;
+}
+
+.status-success {
+  background: #d4edda;
+  color: #155724;
+  border-left: 4px solid #28a745;
+}
+
+.status-error {
+  background: #f8d7da;
+  color: #721c24;
+  border-left: 4px solid #f5c6cb;
+}
+
+.status-warning {
+  background: #fff3cd;
+  color: #856404;
+  border-left: 4px solid #ffc107;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Waiting Screen */
+.room-info {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+.room-info p {
+  margin: 10px 0;
+  font-size: 1.1em;
+}
+
+.room-info strong {
+  color: #667eea;
+  font-family: monospace;
+}
+
+.players-list {
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  margin: 20px 0;
+  min-height: 100px;
+}
+
+#playersList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.player-badge {
+  background: #667eea;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9em;
+}
+
+.player-badge.ai::after {
+  content: ' (AI)';
+}
+
+/* Game Screen */
+.game-board {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  background: white;
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+}
+
+.players-area {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  background: linear-gradient(135deg, #0a8f08 0%, #1db309 100%);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.player {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.3s;
+}
+
+.player.current-turn {
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+  border: 2px solid #ffd700;
+}
+
+.player-top {
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
+}
+
+.player-left {
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 150px;
+}
+
+.player-right {
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 150px;
+}
+
+.player-bottom {
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
+}
+
+.player-name {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+  font-size: 0.9em;
+}
+
+.player-hand {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  justify-content: center;
+  min-height: 40px;
+}
+
+.player-melds {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 5px;
+}
+
+.center-area {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  z-index: 10;
+}
+
+.wall-info {
+  font-size: 1.1em;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.wall-counter {
+  color: #667eea;
+  font-size: 1.3em;
+}
+
+.discard-pile {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 5px;
+  min-width: 200px;
+  margin-bottom: 15px;
+}
+
+.game-info {
+  font-size: 0.9em;
+  color: #666;
+}
+
+.game-info p {
+  margin: 5px 0;
+}
+
+/* Tile Styling */
+.tile {
+  width: 40px;
+  height: 50px;
+  background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+  border: 2px solid #999;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.8em;
+  cursor: default;
+  user-select: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s;
+}
+
+.tile.clickable {
+  cursor: pointer;
+}
+
+.tile.clickable:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.tile-character {
+  background: linear-gradient(135deg, #ffecb3 0%, #ffe082 100%);
+  color: #f57f17;
+}
+
+.tile-dot {
+  background: linear-gradient(135deg, #ffccbc 0%, #ffab91 100%);
+  color: #d84315;
+}
+
+.tile-bamboo {
+  background: linear-gradient(135deg, #c8e6c9 0%, #a5d6a7 100%);
+  color: #388e3c;
+}
+
+.tile-dragon {
+  background: linear-gradient(135deg, #f8bbd0 0%, #f48fb1 100%);
+  color: #c2185b;
+}
+
+.tile-wind {
+  background: linear-gradient(135deg, #b3e5fc 0%, #81d4fa 100%);
+  color: #0277bd;
+}
+
+/* Player Controls */
+.player-controls {
+  background: white;
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+}
+
+.hand-area {
+  margin-bottom: 20px;
+}
+
+.hand-area h3 {
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.hand {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  min-height: 60px;
+  padding: 15px;
+  background: #f9f9f9;
+  border-radius: 8px;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.action-buttons .btn {
+  margin-bottom: 0;
+  flex: 1;
+}
+
+/* Game Over Screen */
+.game-over-panel {
+  text-align: center;
+}
+
+.game-over-panel h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.game-over-info {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.game-over-info p {
+  margin: 10px 0;
+  font-size: 1.1em;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .mahjong-container {
+    padding: 10px;
+  }
+
+  .game-board {
+    padding: 20px;
+  }
+
+  .player {
+    padding: 10px;
+  }
+
+  .tile {
+    width: 35px;
+    height: 45px;
+    font-size: 0.7em;
+  }
+}
+
+@media (max-width: 768px) {
+  .game-header h1 {
+    font-size: 2em;
+  }
+
+  .setup-panel,
+  .waiting-panel,
+  .game-over-panel {
+    padding: 25px;
+  }
+
+  .players-area {
+    aspect-ratio: auto;
+    min-height: 400px;
+  }
+
+  .player {
+    position: static;
+    transform: none;
+    margin: 10px auto;
+    width: 80%;
+    max-width: 200px;
+  }
+
+  .center-area {
+    position: static;
+    transform: none;
+    margin: 20px 0;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+}

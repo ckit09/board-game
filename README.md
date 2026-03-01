@@ -48,23 +48,90 @@ A strategy game where players place stones on a board trying to get 5 in a row.
 - Prioritizes moves near existing stones
 - Gets smarter as the game progresses
 
+### 3. Cotton Picker 🌾
+A reflex-based clicking game where you collect cotton and avoid obstacles.
+
+### 4. Mahjong 🀄
+Network multiplayer Hong Kong Mahjong with AI opponents.
+
+**Features:**
+- **Network Multiplayer**: Play with 4 players across different devices (requires backend)
+- **AI Opponents**: Automatically fill empty player seats
+- **Hong Kong Rules**: Standard ruleset with hand validation
+- **Real-time Gameplay**: Live updates via WebSocket
+- **Responsive Design**: Works on desktop and tablet
+
+**Game Modes:**
+- 4 Players (all human)
+- 1-3 Players + AI opponents
+
+**How to Play:**
+1. Create or join a room
+2. Wait for players to join
+3. Start game (dealer goes first)
+4. Draw → Discard → Next player
+5. Declare win with valid hand
+
+**Winning Hands:**
+- 1 Pair (2 identical tiles)
+- 4 Melds (3 tiles each: Pung or Chow)
+
+**Backend Required:** Yes - deploy to Railway, Render, or self-hosted
+
+**Quick Start:**
+```bash
+# Start backend
+cd mahjong/server && npm start
+
+# Or deploy to Railway/Render (see DEPLOYMENT.md)
+```
+
+See [mahjong/README.md](mahjong/README.md) for full rules and [mahjong/QUICKSTART.md](mahjong/QUICKSTART.md) for setup.
+
 ## Project Structure
 
 ```
 board-game/
-├── index.html           # Main menu
-├── styles.css           # Global styles
-├── chess/
-│   ├── index.html       # Chess game UI
-│   ├── chess.js         # Chess game logic
-│   └── styles.css       # Chess specific styles
-└── gomoku/
-    ├── index.html       # Gomoku game UI
-    ├── gomoku.js        # Gomoku game logic
-    └── styles.css       # Gomoku specific styles
-
-docs/
-└── README.md            # Documentation
+├── index.html                    # Main menu
+├── styles.css                    # Global styles
+├── README.md                     # This file
+├── DEPLOYMENT.md                 # Deployment guide
+├── deploy.sh                     # Deploy script (macOS/Linux)
+├── deploy.ps1                    # Deploy script (Windows)
+│
+├── .github/workflows/
+│   └── deploy-pages.yml          # GitHub Pages CI/CD
+│
+├── chess/                        # Chess game
+│   ├── index.html
+│   ├── chess.js
+│   └── styles.css
+│
+├── gomoku/                       # Gomoku game
+│   ├── index.html
+│   ├── gomoku.js
+│   └── styles.css
+│
+├── cotton-picker/               # Cotton Picker game
+│   ├── index.html
+│   ├── cotton-picker.js
+│   └── styles.css
+│
+└── mahjong/                      # Mahjong (requires backend)
+    ├── index.html               # Client UI
+    ├── mahjong.js               # Client logic
+    ├── styles.css               # Client styling
+    ├── README.md                # Full documentation
+    ├── QUICKSTART.md            # Quick setup guide
+    │
+    └── server/                  # Backend (Node.js)
+        ├── package.json         # Dependencies
+        ├── server.js            # WebSocket server
+        ├── gameEngine.js        # Game logic
+        ├── Procfile             # Heroku config
+        ├── railway.json         # Railway config
+        ├── .env.example         # Environment variables
+        └── .gitignore
 ```
 
 ## Getting Started
@@ -80,7 +147,42 @@ docs/
 - HTML5
 - CSS3 (Grid, Flexbox)
 - Vanilla JavaScript (ES6)
-- No external dependencies
+- No external dependencies (except Node.js for Mahjong backend)
+
+## Deployment
+
+### Frontend (Games: Chess, Gomoku, Cotton Picker, Mahjong Client)
+
+Deployed automatically to **GitHub Pages** on every push to `main/master`:
+
+```bash
+git push origin main
+# GitHub Actions automatically deploys to GitHub Pages
+```
+
+**Live Site:** https://yourusername.github.io/board-games/
+
+**Workflow:** [.github/workflows/deploy-pages.yml](.github/workflows/deploy-pages.yml)
+
+### Backend (Mahjong Server Only)
+
+The Mahjong game requires a WebSocket server. Deploy separately to:
+- **Railway** (recommended, free tier)
+- **Render** (free tier)
+- **Heroku** (paid)
+- **Self-hosted VPS**
+
+**Quick Deploy:**
+
+```bash
+# Windows
+.\deploy.ps1 -Platform railway
+
+# macOS/Linux
+./deploy.sh railway
+```
+
+**Full Instructions:** See [DEPLOYMENT.md](DEPLOYMENT.md)
 
 ## Browser Compatibility
 
